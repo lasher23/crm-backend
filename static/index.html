@@ -10,13 +10,13 @@
   <header>
     <h1>CRM</h1>
     <nav class="mode-toggle">
-      <button id="btn-mode-ui" class="mode-btn active">UI</button>
-      <button id="btn-mode-api" class="mode-btn">API</button>
+      <button id="btn-mode-ui" class="mode-btn">UI</button>
+      <button id="btn-mode-api" class="mode-btn active">API</button>
     </nav>
   </header>
 
   <!-- UI MODE -->
-  <main id="ui-mode">
+  <main id="ui-mode" class="hidden">
     <section id="customer-list-section">
       <div class="section-header">
         <h2>Customers</h2>
@@ -69,7 +69,7 @@
   </main>
 
   <!-- API MODE -->
-  <main id="api-mode" class="hidden">
+  <main id="api-mode">
     <div class="api-header-bar">
       <div>
         <h2>CRM REST API</h2>
