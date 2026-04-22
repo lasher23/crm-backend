@@ -58,6 +58,7 @@ func main() {
 	router.HandleFunc("/customers", addCustomer).Methods("POST")
 	router.HandleFunc("/customers/{id}", updateCustomer).Methods("PUT")
 	router.HandleFunc("/customers/{id}", deleteCustomer).Methods("DELETE")
+	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./static")))
 
 	fmt.Println("Server is starting on port 3003...")
 	err := http.ListenAndServe(":3003", router)
