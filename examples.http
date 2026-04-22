@@ -1,0 +1,89 @@
+@baseUrl = http://localhost:3003
+@id1 = 550e8400-e29b-41d4-a716-446655440001
+@id2 = 550e8400-e29b-41d4-a716-446655440002
+@id3 = 550e8400-e29b-41d4-a716-446655440003
+@nonExistingId = 00000000-0000-0000-0000-000000000000
+
+### Get all customers
+GET {{baseUrl}}/customers
+
+### Get customer by ID
+GET {{baseUrl}}/customers/{{id1}}
+
+### Update a customer
+PUT {{baseUrl}}/customers/{{id2}}
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "role": "Head of Marketing",
+  "email": "john.doe@example.com",
+  "phone": 41796541523,
+  "contacted": true
+}
+
+### Update a customer that does not exist (404)
+PUT {{baseUrl}}/customers/{{nonExistingId}}
+Content-Type: application/json
+
+{
+  "name": "Ghost User",
+  "role": "Nobody",
+  "email": "ghost@example.com",
+  "phone": 0,
+  "contacted": false
+}
+
+### Update a customer with empty name (400)
+PUT {{baseUrl}}/customers/{{id3}}
+Content-Type: application/json
+
+{
+  "name": "",
+  "role": "CEO",
+  "email": "jane.doe@example.com",
+  "phone": 41796541524,
+  "contacted": false
+}
+
+### Add a new customer
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+  "name": "Alice Smith",
+  "role": "Developer",
+  "email": "alice.smith@example.com",
+  "phone": 41796541525,
+  "contacted": false
+}
+
+### Add a new customer without name field (400)
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+  "role": "Developer",
+  "email": "no.name@example.com",
+  "phone": 41796541526,
+  "contacted": false
+}
+
+### Add a new customer with ID provided (400)
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+  "id": "550e8400-e29b-41d4-a716-446655440099",
+  "name": "Bob Builder",
+  "role": "Engineer",
+  "email": "bob.builder@example.com",
+  "phone": 41796541527,
+  "contacted": true
+}
+
+### Delete a customer
+DELETE {{baseUrl}}/customers/{{id3}}
+
+### Delete a non-existing customer (404)
+DELETE {{baseUrl}}/customers/{{nonExistingId}}
